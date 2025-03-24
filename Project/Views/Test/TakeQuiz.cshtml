@@ -1,0 +1,92 @@
+﻿@model Project.Models.Test
+
+@{
+    ViewData["Title"] = "Take Quiz";
+}
+
+<div class="container mt-4">
+    <div class="row">
+        <!-- Cột trái: Danh sách câu hỏi -->
+        <div class="col-md-3">
+            <div class="list-group">
+                @foreach (var question in Model.Questions.Select((q, index) => new { q, index }))
+                {
+                    <a href="javascript:void(0);" class="list-group-item list-group-item-action"
+                       onclick="showQuestion(@question.index)">
+                        Câu @(@question.index + 1)
+                    </a>
+                }
+            </div>
+        </div>
+
+        <!-- Cột phải: Hiển thị câu hỏi -->
+        <div class="col-md-9">
+            <form id="quiz-form" method="post" action="@Url.Action("SubmitQuiz", "Test")">
+                <input type="hidden" name="testId" value="@Model.TestId" />
+
+                <div id="question-container">
+                    @foreach (var question in Model.Questions.Select((q, index) => new { q, index }))
+                    {
+                        <div class="question" id="question-@question.index"
+                             style="display: @(question.index == 0 ? "block" : "none")">
+                            <h5>Câu @(@question.index + 1): @question.q.QuestionText</h5>
+
+                            <ul class="list-group mt-2">
+                                @foreach (var answer in question.q.Answers)
+                                {
+                                    <li class="list-group-item">
+                                        <input type="radio" name="answers[@question.q.QuestionId]" value="@answer.AnswerId">
+                                        @answer.AnswerText
+                                    </li>
+                                }
+                            </ul>
+
+                            <div class="mt-3">
+                                <button type="button" class="btn btn-secondary"
+                                        onclick="prevQuestion(@question.index)">
+                                    Previous
+                                </button>
+                                <button type="button" class="btn btn-primary"
+                                        onclick="nextQuestion(@question.index)">
+                                    Next
+                                </button>
+                            </div>
+                        </div>
+                    }
+                </div>
+
+                <div class="mt-4 text-center">
+                    <button type="button" class="btn btn-success" onclick="submitQuiz()">Submit Quiz</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    let currentQuestion = 0;
+
+    function showQuestion(index) {
+        document.getElementById(`question-${currentQuestion}`).style.display = "none";
+        document.getElementById(`question-${index}`).style.display = "block";
+        currentQuestion = index;
+    }
+
+    function nextQuestion(index) {
+        if (index < @Model.Questions.Count() - 1) {
+            showQuestion(index + 1);
+        }
+    }
+
+    function prevQuestion(index) {
+        if (index > 0) {
+            showQuestion(index - 1);
+        }
+    }
+
+    function submitQuiz() {
+        if (confirm("Bạn có chắc chắn muốn nộp bài không?")) {
+            document.getElementById("quiz-form").submit();
+        }
+    }
+</script>

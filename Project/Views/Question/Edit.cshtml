@@ -1,0 +1,119 @@
+﻿@model Project.Models.Question
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Edit</h1>
+
+<h4>Question</h4>
+<hr />
+<div class="row">
+    <div class="col-md-6">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="QuestionId" />
+
+            <div class="form-group">
+                <label asp-for="QuestionText" class="control-label"></label>
+                <input asp-for="QuestionText" class="form-control" />
+                <span asp-validation-for="QuestionText" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="TestId">Chọn bài test:</label>
+                <select name="TestId" class="form-control" asp-items="ViewBag.TestId">
+                    <option value="">-- Chọn bài test --</option>
+                </select>
+                <span class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label>Câu trả lời:</label>
+                <table class="table" id="answersTable">
+                    <tbody>
+                        @for (int i = 0; i < Model.Answers?.Count; i++)
+                        {
+                            <tr>
+                                <td>
+                                    <input type="checkbox" asp-for="Answers[i].IsCorrect" />
+                                    <input type="hidden" asp-for="Answers[i].AnswerId" />
+                                </td>
+                                <td>
+                                    <input type="text" asp-for="Answers[i].AnswerText" class="form-control" required />
+                                </td>
+                                <td>
+                                    <button type="button" class="btn btn-danger remove-answer">Xóa</button>
+                                </td>
+                            </tr>
+                        }
+                        @if (Model.Answers == null || Model.Answers.Count == 0)
+                        {
+                            <tr>
+                                <td>
+                                    <input type="checkbox" name="Answers[0].IsCorrect" />
+                                </td>
+                                <td>
+                                    <input type="text" name="Answers[0].AnswerText" class="form-control" required />
+                                </td>
+                                <td>
+                                    <button type="button" class="btn btn-danger remove-answer">Xóa</button>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+                <button type="button" class="btn btn-secondary" id="addAnswerButton">Thêm câu trả lời</button>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script>
+        let answerIndex = @(Model.Answers?.Count ?? 1);
+
+        document.getElementById('addAnswerButton').addEventListener('click', function () {
+            const table = document.getElementById('answersTable').getElementsByTagName('tbody')[0];
+            const newRow = table.insertRow();
+
+            newRow.innerHTML = `
+                <td>
+                    <input type="checkbox" name="Answers[${answerIndex}].IsCorrect" value="true" />
+                    <input type="hidden" name="Answers[${answerIndex}].IsCorrect" value="false" />
+                </td>
+                <td>
+                    <input type="text" name="Answers[${answerIndex}].AnswerText" class="form-control" required />
+                </td>
+                <td>
+                    <button type="button" class="btn btn-danger remove-answer">Xóa</button>
+                </td>
+            `;
+            answerIndex++;
+        });
+
+        document.addEventListener('click', function (e) {
+            if (e.target.classList.contains('remove-answer')) {
+                e.target.closest('tr').remove();
+                // Re-index remaining answers
+                const rows = document.querySelectorAll('#answersTable tbody tr');
+                rows.forEach((row, index) => {
+                    row.querySelector('input[type="checkbox"]').name = `Answers[${index}].IsCorrect`;
+                    row.querySelector('input[type="text"]').name = `Answers[${index}].AnswerText`;
+                });
+                answerIndex = rows.length;
+            }
+        });
+    </script>
+}
