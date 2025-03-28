@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Project.Models.ViewModels;
 
 namespace FinalProject.Controllers
 {
@@ -15,6 +16,7 @@ namespace FinalProject.Controllers
         {
             var model = context.Tests
                 .Include(t => t.Category)
+                .Include(t=> t.Questions)
                 .ToList();
             return View(model);
         }
@@ -124,5 +126,75 @@ namespace FinalProject.Controllers
             return View(test);
         }
 
+        [HttpPost]
+        public IActionResult SubmitQuiz(int testId, IFormCollection form)
+        {
+            var test = context.Tests
+                .Include(t => t.Questions)
+                .ThenInclude(q => q.Answers)
+                .FirstOrDefault(t => t.TestId == testId);
+
+            if (test == null) return NotFound();
+
+            // Xử lý câu hỏi + kết quả bài làm
+            int correctCount = 0;
+            var result = new QuizResultVM
+            {
+                TestName = test.TestName,
+                TotalQuestions = test.Questions.Count,
+                QuestionResults = new List<QuizResultVM.QuestionResult>()
+            };
+
+            foreach (var question in test.Questions)
+            {
+                string key = $"answers[{question.QuestionId}]";
+                int userAnswerId = form.ContainsKey(key) ? int.Parse(form[key]) : 0;
+
+                var correctAnswer = question.Answers.FirstOrDefault(a => a.IsCorrect);
+                bool isCorrect = userAnswerId != 0 && correctAnswer?.AnswerId == userAnswerId;
+                if (isCorrect) correctCount++;
+
+                result.QuestionResults.Add(new QuizResultVM.QuestionResult
+                {
+                    QuestionText = question.QuestionText,
+                    UserAnswer = question.Answers.FirstOrDefault(a => a.AnswerId == userAnswerId)?.AnswerText ?? "Không trả lời",
+                    CorrectAnswer = correctAnswer?.AnswerText ?? "Không có",
+                });
+            }
+
+            // Tính điểm
+            result.CorrectAnswers = correctCount;
+            result.Score = correctCount * 100 / result.TotalQuestions;
+
+            // Trả về View hiển thị kết quả (không lưu vào DB)
+            return View("Result", result);
+        }
+
+        public IActionResult Result(int userTestId)
+        {
+            var userTest = context.UserTests
+                .Include(ut => ut.Test)
+                .Include(ut => ut.UserAnswers)
+                    .ThenInclude(ua => ua.Question)
+                .Include(ut => ut.UserAnswers)
+                    .ThenInclude(ua => ua.Answer)
+                .FirstOrDefault(ut => ut.UserTestId == userTestId);
+
+            if (userTest == null) return NotFound();
+
+            var result = new QuizResultVM
+            {
+                TestName = userTest.Test.TestName,
+                TotalQuestions = userTest.UserAnswers.Count,
+                QuestionResults = userTest.UserAnswers.Select(ua => new QuizResultVM.QuestionResult
+                {
+                    QuestionText = ua.Question.QuestionText,
+                    UserAnswer = ua.Answer?.AnswerText ?? "Không trả lời",
+                    CorrectAnswer = ua.Question.Answers.FirstOrDefault(a => a.IsCorrect)?.AnswerText ?? "Không có"
+                }).ToList()
+            };
+
+            return View(result);
+        }
     }
 }

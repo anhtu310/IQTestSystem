@@ -20,7 +20,7 @@ public class HomeController : Controller
     public IActionResult Index(string searchTitle, int? categoryID)
     {
         var categories = context.Categories.ToList();
-        var test = context.Tests.Include(x => x.Category).AsQueryable();
+        var test = context.Tests.Include(x => x.Category).Where(t=>t.IsActive).AsQueryable();
 
         if(!string.IsNullOrEmpty(searchTitle) )
         {

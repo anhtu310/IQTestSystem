@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Project.Models;
+using Project.Models.ViewModels;
 using Project.Service;
 
 namespace Project.Controllers

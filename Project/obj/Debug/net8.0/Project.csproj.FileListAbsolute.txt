@@ -342,3 +342,4 @@ D:\Desktop\FinalProject\Project\obj\Debug\net8.0\refint\Project.dll
 D:\Desktop\FinalProject\Project\obj\Debug\net8.0\Project.pdb
 D:\Desktop\FinalProject\Project\obj\Debug\net8.0\Project.genruntimeconfig.cache
 D:\Desktop\FinalProject\Project\obj\Debug\net8.0\ref\Project.dll
+D:\Desktop\FinalProject\Project\obj\Debug\net8.0\Project.sourcelink.json

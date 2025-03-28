@@ -1,17 +1,23 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Project.Models;
 
 namespace Project.Controllers.Admin
 {
     public class AdminController : Controller
     {
+        private readonly IqtestSystemContext context;
+
+        public AdminController(IqtestSystemContext context)
+        {
+            this.context = context;
+        }
+
         public IActionResult Index()
         {
-            // Giả lập dữ liệu thống kê
-            ViewBag.TestCount = 120; // Số bài test
-            ViewBag.UserCount = 350; // Số người dùng
-            ViewBag.QuestionCount = 850; // Số câu hỏi
-            ViewBag.CategoryCount = 20; // Số danh mục
-
+            ViewBag.TestCount = context.Tests.Count();
+            ViewBag.UserCount = context.Users.Count();
+            ViewBag.QuestionCount = context.Questions.Count();
+            ViewBag.CategoryCount = context.Categories.Count();
 
             return View();
         }

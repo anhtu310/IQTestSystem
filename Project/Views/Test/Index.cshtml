@@ -22,7 +22,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.TimeLimit)
             </th>
-
+            <th>
+                Số câu hỏi
+            </th>
             <th>
                 Status
             </th>
@@ -46,6 +48,9 @@
                     @Html.DisplayFor(modelItem => item.TimeLimit)
                 </td>
                 <td>
+                    @(item.Questions != null ? item.Questions.Count : 0)
+                </td>
+                <td>
                     @if (item.IsActive)
                     {
                         <span class="btn btn-success">Active</span>
@@ -65,4 +70,5 @@
             </tr>
         }
     </tbody>
+
 </table>

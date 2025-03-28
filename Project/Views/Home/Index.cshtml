@@ -2,6 +2,9 @@
     ViewData["Title"] = "Home Page";
 }
 
+<!-- SweetAlert2 -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 <div class="container m-5">
     <div class="row mb-4">
         <div class="col-md-8 mx-auto">
@@ -14,7 +17,7 @@
             </form>
         </div>
     </div>
-    <!-- Features Section -->
+
     <div class="row mb-4">
         @foreach (var item in ViewBag.Test)
         {
@@ -32,12 +35,42 @@
                             <strong>Created:</strong>
                             @(item.CreatedAt != null ? item.CreatedAt?.ToString("dd/MM/yyyy") : "Chưa có thông tin")
                         </p>
-                        <a asp-controller="Test" asp-action="TakeQuiz" asp-route-id="@item.TestId" class="btn btn-success mt-3">
-                            Take Quiz
-                        </a>
+
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <a asp-controller="Test" asp-action="TakeQuiz" asp-route-id="@item.TestId" class="btn btn-success mt-3">
+                                Take Quiz
+                            </a>
+                        }
+                        else
+                        {
+                            <button type="button" class="btn btn-success mt-3" onclick="showLoginAlert()">
+                                Take Quiz
+                            </button>
+                        }
+
                     </div>
                 </div>
             </div>
         }
     </div>
 </div>
+
+<script>
+    function showLoginAlert() {
+        Swal.fire({
+            title: 'Bạn chưa đăng nhập.',
+            text: "Vui lòng đăng nhập để làm bài quiz!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Đăng nhập',
+            cancelButtonText: 'Cancel'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = '@Url.Action("Login", "Authentication")';
+            }
+        });
+    }
+</script>
