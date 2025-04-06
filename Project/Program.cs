@@ -56,37 +56,4 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
-app.Use(async (context, next) =>
-{
-    var currentPath = context.Request.Path.Value?.ToLower() ?? "";
-
-    // Bỏ qua kiểm tra nếu là trang đăng xuất hoặc các trang xác thực
-    if (currentPath.Contains("/authentication/logout") ||
-        currentPath.Contains("/authentication/login") ||
-        currentPath.Contains("/authentication/accessdenied"))
-    {
-        await next();
-        return;
-    }
-
-    var user = context.User;
-
-    if (user.Identity.IsAuthenticated)
-    {
-        if (user.IsInRole("Admin") && !currentPath.Contains("/admin"))
-        {
-            context.Response.Redirect("/Admin/Index");
-            return;
-        }
-
-        if (user.IsInRole("User") && !currentPath.Contains("/home"))
-        {
-            context.Response.Redirect("/Home/Index");
-            return;
-        }
-    }
-
-    await next();
-});
-
 app.Run();
