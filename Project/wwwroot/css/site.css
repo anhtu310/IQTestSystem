@@ -8,13 +8,19 @@
     }
 }
 
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+/* Focus và active states */
+.btn:focus,
+.btn:active:focus,
+.btn-link.nav-link:focus,
+.form-control:focus,
+.form-check-input:focus {
     box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
 }
 
+/* Truncate text */
 .truncate-text {
     display: -webkit-box;
-    -webkit-line-clamp: 3; /* Hiển thị tối đa 2 dòng */
+    -webkit-line-clamp: 3; /* Hiển thị tối đa 3 dòng */
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis; /* Thêm dấu "..." nếu bị cắt */
@@ -22,17 +28,9 @@
     white-space: normal; /* Đảm bảo ngắt dòng */
 }
 
-html {
-    position: relative;
-    min-height: 100%;
-}
-
-body {
-    margin-bottom: 600px;
-}
-/*Footer*/
+/* Footer */
 .footer {
-    box-shadow: 0 -5px 15px rgba(0,0,0,0.05);
+    box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.05);
     margin-top: 200px;
 }
 
@@ -59,13 +57,14 @@ footer a:hover {
     opacity: 0.8;
 }
 
+/* Responsive */
 @media (max-width: 991px) {
     .footer-section {
         text-align: center;
     }
 }
-/*Header*/
 
+/* Header */
 .header-section {
     background: linear-gradient(120deg, #f8f9fa 0%, #e9ecef 100%);
     border-radius: 15px;
@@ -112,14 +111,12 @@ footer a:hover {
     }
 }
 
-/* Thêm hover effect */
 .header-section:hover {
     transform: translateY(-5px);
     box-shadow: 0 15px 40px rgba(0,0,0,0.08);
     transition: all 0.3s ease;
 }
 
-/* Responsive */
 @media (max-width: 768px) {
     .text-gradient {
         font-size: 2rem;
@@ -134,7 +131,7 @@ footer a:hover {
     }
 }
 
-/*News*/
+/* News */
 .news-card {
     transition: all 0.3s ease;
     border: none;
@@ -209,8 +206,7 @@ footer a:hover {
         box-shadow: 0 5px 15px rgba(25, 118, 210, 0.2);
     }
 
-
-/*Category*/
+/* Category */
 .category-card {
     transition: all 0.3s ease;
     border: none;
@@ -276,7 +272,7 @@ footer a:hover {
         border-radius: 2px;
     }
 
-/*Nav Categories*/
+/* Nav Categories */
 .nav-item {
     position: relative;
 }
@@ -338,9 +334,7 @@ footer a:hover {
     border-top: 1px solid rgba(0,0,0,0.1);
 }
 
-
-
-/*Authen css*/
+/* Authen CSS */
 .form-control:focus {
     border-color: #80bdff;
     box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
@@ -355,18 +349,23 @@ footer a:hover {
         box-shadow: 0 2px 8px rgba(0,123,255,.3);
     }
 
-
-.nav-item.dropdown:hover .dropdown-menu {
-    display: block;
-    animation: fadeIn 0.3s ease;
+/* Nav Bar */
+.navBarRight {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
 }
 
-.dropdown-menu {
-    margin-top: 0;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-}
+    .navBarRight .navbar-nav {
+        display: flex;
+        align-items: center;
+    }
 
+    .navBarRight .nav-item {
+        margin-left: 10px;
+    }
+
+/* Quick access button */
 .quick-access-btn {
     transition: all 0.3s ease;
     border-radius: 8px;
@@ -376,45 +375,4 @@ footer a:hover {
     .quick-access-btn:hover {
         transform: translateY(-2px);
         box-shadow: 0 4px 12px rgba(0,123,255,0.15);
-    }
-
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(10px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* Thêm mũi tên nhỏ phía trên dropdown */
-.dropdown-menu::before {
-    content: '';
-    position: absolute;
-    top: -5px;
-    left: 20px;
-    width: 10px;
-    height: 10px;
-    background: white;
-    transform: rotate(45deg);
-    border-left: 1px solid rgba(0,0,0,.15);
-    border-top: 1px solid rgba(0,0,0,.15);
-}
-
-.navBarRight {
-    margin-left: auto; /* Đẩy phần này sang bên phải */
-    display: flex;
-    align-items: center; /* Căn giữa theo chiều dọc */
-}
-
-    .navBarRight .navbar-nav {
-        display: flex;
-        align-items: center;
-    }
-
-    .navBarRight .nav-item {
-        margin-left: 10px; /* Khoảng cách giữa các mục */
     }

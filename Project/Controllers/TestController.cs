@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Project.Models.ViewModels;
+using System.Security.Claims;
+using static Project.Models.ViewModels.QuizResultVM;
 
 namespace FinalProject.Controllers
 {
@@ -122,8 +124,29 @@ namespace FinalProject.Controllers
             {
                 return NotFound();
             }
+            var userId = GetCurrentUserId();
+            var userTest = new UserTest
+            {
+                TestId = test.TestId,
+                UserId = userId,
+                StartTime = DateTime.Now
+            };
+            context.UserTests.Add(userTest);
+            context.SaveChanges();
+            HttpContext.Session.SetInt32("UserTestId", userTest.UserTestId);
 
             return View(test);
+        }
+
+        private int GetCurrentUserId()
+        {
+            var claim = User.FindFirst(ClaimTypes.NameIdentifier);
+            if (claim == null)
+            {
+                throw new Exception("User chưa đăng nhập hoặc không có claim NameIdentifier");
+            }
+
+            return int.Parse(claim.Value);
         }
 
         [HttpPost]
@@ -136,7 +159,6 @@ namespace FinalProject.Controllers
 
             if (test == null) return NotFound();
 
-            // Xử lý câu hỏi + kết quả bài làm
             int correctCount = 0;
             var result = new QuizResultVM
             {
@@ -162,11 +184,51 @@ namespace FinalProject.Controllers
                 });
             }
 
-            // Tính điểm
             result.CorrectAnswers = correctCount;
             result.Score = correctCount * 100 / result.TotalQuestions;
 
-            // Trả về View hiển thị kết quả (không lưu vào DB)
+            var userTestId = HttpContext.Session.GetInt32("UserTestId");
+            if (userTestId == null)
+            {
+                return RedirectToAction("Error", "Home");
+            }
+
+            var userTest = context.UserTests
+                .Include(ut => ut.UserAnswers)
+                .FirstOrDefault(ut => ut.UserTestId == userTestId);
+
+            if (userTest != null)
+            {
+                userTest.EndTime = DateTime.Now;
+                userTest.Score = result.Score;
+                userTest.UserAnswers.Clear();
+
+                foreach (var question in test.Questions)
+                {
+                    string key = $"answers[{question.QuestionId}]";
+                    int userAnswerId = form.ContainsKey(key) ? int.Parse(form[key]) : 0;
+
+                    var selectedAnswer = question.Answers.FirstOrDefault(a => a.AnswerId == userAnswerId);
+                    if (selectedAnswer == null)
+                    {
+                        // Nếu không có câu trả lời hợp lệ, có thể bỏ qua hoặc thông báo lỗi
+                        continue;
+                    }
+
+                    var userAnswer = new UserAnswer
+                    {
+                        UserTestId = userTest.UserTestId,
+                        QuestionId = question.QuestionId,
+                        AnswerId = selectedAnswer.AnswerId,
+                        IsCorrect = selectedAnswer.IsCorrect
+                    };
+
+                    context.UserAnswers.Add(userAnswer);
+                }
+
+                context.SaveChanges();
+            }
+
             return View("Result", result);
         }
 
@@ -174,6 +236,8 @@ namespace FinalProject.Controllers
         {
             var userTest = context.UserTests
                 .Include(ut => ut.Test)
+                .ThenInclude(t => t.Questions)
+                    .ThenInclude(q => q.Answers)
                 .Include(ut => ut.UserAnswers)
                     .ThenInclude(ua => ua.Question)
                 .Include(ut => ut.UserAnswers)
@@ -182,19 +246,63 @@ namespace FinalProject.Controllers
 
             if (userTest == null) return NotFound();
 
+            var test = userTest.Test;
+            var allQuestions = test.Questions.ToList();
+
+            var answeredQuestions = userTest.UserAnswers
+                .Where(ua => ua.AnswerId != null)
+                .ToList();
+
+            var totalQuestions = allQuestions.Count;
+            if (totalQuestions == 0)
+            {
+                return View("Error");
+            }
+
+            var correctAnswersCount = answeredQuestions.Count(ua => ua.IsCorrect == true);
+            var score = (correctAnswersCount * 100) / totalQuestions;
+
             var result = new QuizResultVM
             {
-                TestName = userTest.Test.TestName,
-                TotalQuestions = userTest.UserAnswers.Count,
-                QuestionResults = userTest.UserAnswers.Select(ua => new QuizResultVM.QuestionResult
+                TestName = test.TestName,
+                TotalQuestions = totalQuestions,
+                CorrectAnswers = correctAnswersCount,
+                Score = score,
+                QuestionResults = allQuestions.Select(q => new QuizResultVM.QuestionResult
                 {
-                    QuestionText = ua.Question.QuestionText,
-                    UserAnswer = ua.Answer?.AnswerText ?? "Không trả lời",
-                    CorrectAnswer = ua.Question.Answers.FirstOrDefault(a => a.IsCorrect)?.AnswerText ?? "Không có"
+                    QuestionText = q.QuestionText,
+                    UserAnswer = answeredQuestions.FirstOrDefault(ua => ua.QuestionId == q.QuestionId)?.Answer?.AnswerText ?? "Không trả lời",
+                    CorrectAnswer = q.Answers.FirstOrDefault(a => a.IsCorrect)?.AnswerText ?? "Không có"
                 }).ToList()
             };
 
             return View(result);
         }
+
+        public IActionResult TestHistory()
+        {
+            var userId = GetCurrentUserId();
+
+            var userTests = context.UserTests
+                .Where(ut => ut.UserId == userId)
+                .Include(ut => ut.Test)
+                .Include(ut => ut.UserAnswers)
+                .OrderByDescending(ut => ut.StartTime)
+                .ToList();
+
+            var history = userTests.Select(ut => new UserTestHistoryVM
+            {
+                UserTestId = ut.UserTestId,
+                TestName = ut.Test.TestName,
+                StartTime = ut.StartTime ?? DateTime.MinValue,
+                EndTime = ut.EndTime,
+                Score = ut.Score ?? 0,
+                TotalQuestions = ut.UserAnswers.Count,
+                CorrectAnswers = ut.UserAnswers.Count(ua => ua.IsCorrect == true)
+            }).ToList();
+
+            return View(history);
+        }
+
     }
 }

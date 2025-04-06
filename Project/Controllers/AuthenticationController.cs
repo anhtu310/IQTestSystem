@@ -69,6 +69,7 @@ namespace Project.Controllers
         {
             var claims = new List<Claim>
     {
+        new Claim(ClaimTypes.NameIdentifier,userId),
         new Claim(ClaimTypes.Name, email),
         new Claim(ClaimTypes.Role, isAdmin ? "Admin" : "User"),
         new Claim("UserId", userId),
@@ -141,7 +142,9 @@ namespace Project.Controllers
         public async Task<IActionResult> Logout()
         {
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            HttpContext.Session.Clear();
             return RedirectToAction("Login", "Authentication");
         }
+
     }
 }

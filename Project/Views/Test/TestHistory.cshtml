@@ -1,0 +1,33 @@
+﻿@model List<Project.Models.ViewModels.UserTestHistoryVM>
+
+<h2>Lịch sử làm bài test</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Test Name</th>
+            <th>Start Time</th>
+            <th>End Time</th>
+            <th>Score</th>
+            <th>Total Questions</th>
+            <th>Correct Answers</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.TestName</td>
+                <td>@item.StartTime</td>
+                <td>@(item.EndTime.HasValue ? item.EndTime.Value.ToString("g") : "N/A")</td>
+                <td>@item.Score</td>
+                <td>@item.TotalQuestions</td>
+                <td>@item.CorrectAnswers</td>
+                <td>
+                    <a href="@Url.Action("Result", "Test", new { userTestId = item.UserTestId })" class="btn btn-info">View Results</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

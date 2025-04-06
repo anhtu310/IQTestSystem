@@ -16,4 +16,5 @@
             public bool IsCorrect => UserAnswer == CorrectAnswer;
         }
     }
+
 }

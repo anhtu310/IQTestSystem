@@ -1,11 +1,6 @@
 ﻿@model Project.Models.ViewModels.QuizResultVM
 
-@{
-    ViewData["Title"] = "Kết quả bài làm";
-}
-
 <div class="container mt-4">
-
     <h2 class="mb-4">Kết quả bài kiểm tra: @Model.TestName</h2>
 
     <div class="alert alert-info">
@@ -37,5 +32,6 @@
     </table>
 
     <a href="@Url.Action("Index", "Home")" class="btn btn-primary">Quay về trang chủ</a>
+    <a href="@Url.Action("TestHistory", "Test")" class="btn btn-info">Xem Lịch sử làm bài</a>
 
 </div>

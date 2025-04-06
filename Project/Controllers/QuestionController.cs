@@ -217,14 +217,29 @@ namespace FinalProject.Controllers
         public ActionResult Delete(int? id)
         {
             if (id == null) return NotFound();
-            var question = context.Questions.Include(q => q.Answers).Include(q => q.Tests).FirstOrDefault(q => q.QuestionId == id);
+
+            var question = context.Questions
+                .Include(q => q.Answers)
+                .Include(q => q.UserAnswers)
+                .Include(q => q.Tests)
+                .ThenInclude(t => t.UserTests)
+                .FirstOrDefault(q => q.QuestionId == id);
+
             if (question == null) return NotFound();
 
-            context.Answers.RemoveRange(question.Answers); // Xóa câu trả lời trước
-            question.Tests.Clear(); // Xóa liên kết với bài test
+            context.Answers.RemoveRange(question.Answers);
+            context.UserAnswers.RemoveRange(question.UserAnswers);
+
+            foreach (var test in question.Tests.ToList())
+            {
+                test.Questions.Remove(question);
+            }
+
             context.Questions.Remove(question);
             context.SaveChanges();
+
             return RedirectToAction(nameof(Index));
         }
+
     }
 }
