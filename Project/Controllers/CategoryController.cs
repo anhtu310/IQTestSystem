@@ -20,21 +20,6 @@ namespace FinalProject.Controllers
             return View(model);
         }
 
-        // GET: CategoryController/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-            var category = context.Categories.FirstOrDefault(m=> m.CategoryId == id);
-            if(category == null)
-            {
-                return NotFound();
-            }
-            return View(category);
-        }
-
         // GET: CategoryController/Create
         public ActionResult Create()
         {
@@ -46,7 +31,7 @@ namespace FinalProject.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(Category category)
         {
-           if (!ModelState.IsValid)
+           if (ModelState.IsValid)
             {
                 context.Add(category);
                 context.SaveChanges();

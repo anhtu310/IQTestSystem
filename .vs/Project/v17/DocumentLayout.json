@@ -3,6 +3,30 @@
   "WorkspaceRootPath": "D:\\Desktop\\FinalProject\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{189FD63C-3CCD-420C-AF47-B4EB3AD6D019}|Project\\Project.csproj|d:\\desktop\\finalproject\\project\\views\\question\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{189FD63C-3CCD-420C-AF47-B4EB3AD6D019}|Project\\Project.csproj|solutionrelative:project\\views\\question\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{189FD63C-3CCD-420C-AF47-B4EB3AD6D019}|Project\\Project.csproj|d:\\desktop\\finalproject\\project\\views\\question\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{189FD63C-3CCD-420C-AF47-B4EB3AD6D019}|Project\\Project.csproj|solutionrelative:project\\views\\question\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{189FD63C-3CCD-420C-AF47-B4EB3AD6D019}|Project\\Project.csproj|d:\\desktop\\finalproject\\project\\views\\category\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{189FD63C-3CCD-420C-AF47-B4EB3AD6D019}|Project\\Project.csproj|solutionrelative:project\\views\\category\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{189FD63C-3CCD-420C-AF47-B4EB3AD6D019}|Project\\Project.csproj|d:\\desktop\\finalproject\\project\\controllers\\questioncontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{189FD63C-3CCD-420C-AF47-B4EB3AD6D019}|Project\\Project.csproj|solutionrelative:project\\controllers\\questioncontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{189FD63C-3CCD-420C-AF47-B4EB3AD6D019}|Project\\Project.csproj|d:\\desktop\\finalproject\\project\\controllers\\categorycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{189FD63C-3CCD-420C-AF47-B4EB3AD6D019}|Project\\Project.csproj|solutionrelative:project\\controllers\\categorycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{189FD63C-3CCD-420C-AF47-B4EB3AD6D019}|Project\\Project.csproj|d:\\desktop\\finalproject\\project\\project.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{189FD63C-3CCD-420C-AF47-B4EB3AD6D019}|Project\\Project.csproj|solutionrelative:project\\project.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{189FD63C-3CCD-420C-AF47-B4EB3AD6D019}|Project\\Project.csproj|d:\\desktop\\finalproject\\project\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{189FD63C-3CCD-420C-AF47-B4EB3AD6D019}|Project\\Project.csproj|solutionrelative:project\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
@@ -15,20 +39,12 @@
       "RelativeMoniker": "D:0:0:{189FD63C-3CCD-420C-AF47-B4EB3AD6D019}|Project\\Project.csproj|solutionrelative:project\\wwwroot\\js\\site.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{189FD63C-3CCD-420C-AF47-B4EB3AD6D019}|Project\\Project.csproj|d:\\desktop\\finalproject\\project\\project.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
-      "RelativeMoniker": "D:0:0:{189FD63C-3CCD-420C-AF47-B4EB3AD6D019}|Project\\Project.csproj|solutionrelative:project\\project.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{189FD63C-3CCD-420C-AF47-B4EB3AD6D019}|Project\\Project.csproj|d:\\desktop\\finalproject\\project\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{189FD63C-3CCD-420C-AF47-B4EB3AD6D019}|Project\\Project.csproj|solutionrelative:project\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{189FD63C-3CCD-420C-AF47-B4EB3AD6D019}|Project\\Project.csproj|d:\\desktop\\finalproject\\project\\controllers\\authenticationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{189FD63C-3CCD-420C-AF47-B4EB3AD6D019}|Project\\Project.csproj|solutionrelative:project\\controllers\\authenticationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{189FD63C-3CCD-420C-AF47-B4EB3AD6D019}|Project\\Project.csproj|d:\\desktop\\finalproject\\project\\controllers\\questioncontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{189FD63C-3CCD-420C-AF47-B4EB3AD6D019}|Project\\Project.csproj|solutionrelative:project\\controllers\\questioncontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{189FD63C-3CCD-420C-AF47-B4EB3AD6D019}|Project\\Project.csproj|d:\\desktop\\finalproject\\project\\models\\question.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -90,49 +106,37 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "site.js",
-              "DocumentMoniker": "D:\\Desktop\\FinalProject\\Project\\wwwroot\\js\\site.js",
-              "RelativeDocumentMoniker": "Project\\wwwroot\\js\\site.js",
-              "ToolTip": "D:\\Desktop\\FinalProject\\Project\\wwwroot\\js\\site.js",
-              "RelativeToolTip": "Project\\wwwroot\\js\\site.js",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
-              "WhenOpened": "2025-04-06T15:39:37.164Z",
+              "DocumentIndex": 1,
+              "Title": "Edit.cshtml",
+              "DocumentMoniker": "D:\\Desktop\\FinalProject\\Project\\Views\\Question\\Edit.cshtml",
+              "RelativeDocumentMoniker": "Project\\Views\\Question\\Edit.cshtml",
+              "ToolTip": "D:\\Desktop\\FinalProject\\Project\\Views\\Question\\Edit.cshtml",
+              "RelativeToolTip": "Project\\Views\\Question\\Edit.cshtml",
+              "ViewState": "AgIAABUAAAAAAAAAAAAgwGcAAAALAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-04-09T13:16:11.272Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Program.cs",
-              "DocumentMoniker": "D:\\Desktop\\FinalProject\\Project\\Program.cs",
-              "RelativeDocumentMoniker": "Project\\Program.cs",
-              "ToolTip": "D:\\Desktop\\FinalProject\\Project\\Program.cs",
-              "RelativeToolTip": "Project\\Program.cs",
-              "ViewState": "AgIAADcAAAAAAAAAAAAgwDkAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-06T12:46:20.789Z",
+              "DocumentIndex": 0,
+              "Title": "Create.cshtml",
+              "DocumentMoniker": "D:\\Desktop\\FinalProject\\Project\\Views\\Question\\Create.cshtml",
+              "RelativeDocumentMoniker": "Project\\Views\\Question\\Create.cshtml",
+              "ToolTip": "D:\\Desktop\\FinalProject\\Project\\Views\\Question\\Create.cshtml",
+              "RelativeToolTip": "Project\\Views\\Question\\Create.cshtml",
+              "ViewState": "AgIAAFIAAAAAAAAAAAAkwIsAAABLAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-04-09T12:45:34.101Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "AuthenticationController.cs",
-              "DocumentMoniker": "D:\\Desktop\\FinalProject\\Project\\Controllers\\AuthenticationController.cs",
-              "RelativeDocumentMoniker": "Project\\Controllers\\AuthenticationController.cs",
-              "ToolTip": "D:\\Desktop\\FinalProject\\Project\\Controllers\\AuthenticationController.cs",
-              "RelativeToolTip": "Project\\Controllers\\AuthenticationController.cs",
-              "ViewState": "AgIAAH4AAAAAAAAAAAAQwIwAAAASAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-06T12:17:37.628Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 12,
               "Title": "TestController.cs",
               "DocumentMoniker": "D:\\Desktop\\FinalProject\\Project\\Controllers\\TestController.cs",
               "RelativeDocumentMoniker": "Project\\Controllers\\TestController.cs",
@@ -144,7 +148,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 7,
               "Title": "site.css",
               "DocumentMoniker": "D:\\Desktop\\FinalProject\\Project\\wwwroot\\css\\site.css",
               "RelativeDocumentMoniker": "Project\\wwwroot\\css\\site.css",
@@ -152,12 +156,99 @@
               "RelativeToolTip": "Project\\wwwroot\\css\\site.css",
               "ViewState": "AgIAAD0AAAAAAAAAAAAhwEwAAAAGAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2025-04-06T13:57:59.824Z",
+              "WhenOpened": "2025-04-06T13:57:59.824Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "QuestionController.cs",
+              "DocumentMoniker": "D:\\Desktop\\FinalProject\\Project\\Controllers\\QuestionController.cs",
+              "RelativeDocumentMoniker": "Project\\Controllers\\QuestionController.cs",
+              "ToolTip": "D:\\Desktop\\FinalProject\\Project\\Controllers\\QuestionController.cs",
+              "RelativeToolTip": "Project\\Controllers\\QuestionController.cs",
+              "ViewState": "AgIAACEAAAAAAAAAAAAowFkAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-06T14:03:18.285Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 10,
+              "Title": "AuthenticationController.cs",
+              "DocumentMoniker": "D:\\Desktop\\FinalProject\\Project\\Controllers\\AuthenticationController.cs",
+              "RelativeDocumentMoniker": "Project\\Controllers\\AuthenticationController.cs",
+              "ToolTip": "D:\\Desktop\\FinalProject\\Project\\Controllers\\AuthenticationController.cs",
+              "RelativeToolTip": "Project\\Controllers\\AuthenticationController.cs",
+              "ViewState": "AgIAAH4AAAAAAAAAAAAQwIwAAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-06T12:17:37.628Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\Desktop\\FinalProject\\Project\\Program.cs",
+              "RelativeDocumentMoniker": "Project\\Program.cs",
+              "ToolTip": "D:\\Desktop\\FinalProject\\Project\\Program.cs",
+              "RelativeToolTip": "Project\\Program.cs",
+              "ViewState": "AgIAADcAAAAAAAAAAAAgwDkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-06T12:46:20.789Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Create.cshtml",
+              "DocumentMoniker": "D:\\Desktop\\FinalProject\\Project\\Views\\Category\\Create.cshtml",
+              "RelativeDocumentMoniker": "Project\\Views\\Category\\Create.cshtml",
+              "ToolTip": "D:\\Desktop\\FinalProject\\Project\\Views\\Category\\Create.cshtml",
+              "RelativeToolTip": "Project\\Views\\Category\\Create.cshtml",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAgwCcAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-04-09T12:38:06.706Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "CategoryController.cs",
+              "DocumentMoniker": "D:\\Desktop\\FinalProject\\Project\\Controllers\\CategoryController.cs",
+              "RelativeDocumentMoniker": "Project\\Controllers\\CategoryController.cs",
+              "ToolTip": "D:\\Desktop\\FinalProject\\Project\\Controllers\\CategoryController.cs",
+              "RelativeToolTip": "Project\\Controllers\\CategoryController.cs",
+              "ViewState": "AgIAABQAAAAAAAAAAAAqwCEAAAAPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-09T12:36:57.078Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Project.csproj",
+              "DocumentMoniker": "D:\\Desktop\\FinalProject\\Project\\Project.csproj",
+              "RelativeDocumentMoniker": "Project\\Project.csproj",
+              "ToolTip": "D:\\Desktop\\FinalProject\\Project\\Project.csproj",
+              "RelativeToolTip": "Project\\Project.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAABQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-04-06T15:35:50.443Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "site.js",
+              "DocumentMoniker": "D:\\Desktop\\FinalProject\\Project\\wwwroot\\js\\site.js",
+              "RelativeDocumentMoniker": "Project\\wwwroot\\js\\site.js",
+              "ToolTip": "D:\\Desktop\\FinalProject\\Project\\wwwroot\\js\\site.js",
+              "RelativeToolTip": "Project\\wwwroot\\js\\site.js",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2025-04-06T15:39:37.164Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
               "Title": "_Layout.cshtml",
               "DocumentMoniker": "D:\\Desktop\\FinalProject\\Project\\Views\\Shared\\_Layout.cshtml",
               "RelativeDocumentMoniker": "Project\\Views\\Shared\\_Layout.cshtml",
@@ -170,7 +261,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 15,
               "Title": "TakeQuiz.cshtml",
               "DocumentMoniker": "D:\\Desktop\\FinalProject\\Project\\Views\\Test\\TakeQuiz.cshtml",
               "RelativeDocumentMoniker": "Project\\Views\\Test\\TakeQuiz.cshtml",
@@ -182,7 +273,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 17,
               "Title": "QuizResultVM.cs",
               "DocumentMoniker": "D:\\Desktop\\FinalProject\\Project\\Models\\ViewModels\\QuizResultVM.cs",
               "RelativeDocumentMoniker": "Project\\Models\\ViewModels\\QuizResultVM.cs",
@@ -194,20 +285,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Project",
-              "DocumentMoniker": "D:\\Desktop\\FinalProject\\Project\\Project.csproj",
-              "RelativeDocumentMoniker": "Project\\Project.csproj",
-              "ToolTip": "D:\\Desktop\\FinalProject\\Project\\Project.csproj",
-              "RelativeToolTip": "Project\\Project.csproj",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAABQAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2025-04-06T15:35:50.443Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 14,
               "Title": "TestHistory.cshtml",
               "DocumentMoniker": "D:\\Desktop\\FinalProject\\Project\\Views\\Test\\TestHistory.cshtml",
               "RelativeDocumentMoniker": "Project\\Views\\Test\\TestHistory.cshtml",
@@ -219,19 +297,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "QuestionController.cs",
-              "DocumentMoniker": "D:\\Desktop\\FinalProject\\Project\\Controllers\\QuestionController.cs",
-              "RelativeDocumentMoniker": "Project\\Controllers\\QuestionController.cs",
-              "ToolTip": "D:\\Desktop\\FinalProject\\Project\\Controllers\\QuestionController.cs",
-              "RelativeToolTip": "Project\\Controllers\\QuestionController.cs",
-              "ViewState": "AgIAANwAAAAAAAAAAAAmwPIAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-06T14:03:18.285Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 11,
               "Title": "Question.cs",
               "DocumentMoniker": "D:\\Desktop\\FinalProject\\Project\\Models\\Question.cs",
               "RelativeDocumentMoniker": "Project\\Models\\Question.cs",
@@ -243,7 +309,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 13,
               "Title": "Result.cshtml",
               "DocumentMoniker": "D:\\Desktop\\FinalProject\\Project\\Views\\Test\\Result.cshtml",
               "RelativeDocumentMoniker": "Project\\Views\\Test\\Result.cshtml",
@@ -255,7 +321,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 18,
               "Title": "Index.cshtml",
               "DocumentMoniker": "D:\\Desktop\\FinalProject\\Project\\Views\\Home\\Index.cshtml",
               "RelativeDocumentMoniker": "Project\\Views\\Home\\Index.cshtml",
@@ -267,7 +333,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 16,
               "Title": "UserHistory.cs",
               "DocumentMoniker": "D:\\Desktop\\FinalProject\\Project\\Models\\ViewModels\\UserHistory.cs",
               "RelativeDocumentMoniker": "Project\\Models\\ViewModels\\UserHistory.cs",
@@ -279,7 +345,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 22,
               "Title": "UserService.cs",
               "DocumentMoniker": "D:\\Desktop\\FinalProject\\Project\\Service\\UserService.cs",
               "RelativeDocumentMoniker": "Project\\Service\\UserService.cs",
@@ -291,7 +357,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 19,
               "Title": "_AdminLayout.cshtml",
               "DocumentMoniker": "D:\\Desktop\\FinalProject\\Project\\Views\\Shared\\_AdminLayout.cshtml",
               "RelativeDocumentMoniker": "Project\\Views\\Shared\\_AdminLayout.cshtml",
@@ -303,7 +369,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 23,
               "Title": "LoginVM.cs",
               "DocumentMoniker": "D:\\Desktop\\FinalProject\\Project\\Models\\ViewModels\\LoginVM.cs",
               "RelativeDocumentMoniker": "Project\\Models\\ViewModels\\LoginVM.cs",
@@ -315,7 +381,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 21,
               "Title": "IUserSerivce.cs",
               "DocumentMoniker": "D:\\Desktop\\FinalProject\\Project\\Service\\IUserSerivce.cs",
               "RelativeDocumentMoniker": "Project\\Service\\IUserSerivce.cs",
@@ -327,7 +393,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 20,
               "Title": "UserRepository.cs",
               "DocumentMoniker": "D:\\Desktop\\FinalProject\\Project\\Repositories\\UserRepository.cs",
               "RelativeDocumentMoniker": "Project\\Repositories\\UserRepository.cs",

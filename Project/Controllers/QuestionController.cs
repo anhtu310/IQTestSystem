@@ -33,53 +33,60 @@ namespace FinalProject.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(Question question, int TestId)
         {
-            if (!ModelState.IsValid)
+            try
             {
+                if (!ModelState.IsValid)
+                {
+                    ViewBag.TestId = new SelectList(context.Tests, "TestId", "TestName", TestId);
+                    return View(question);
+                }
+
+                // Lưu câu hỏi
+                var newQuestion = new Question
+                {
+                    QuestionText = question.QuestionText
+                };
+
+                context.Questions.Add(newQuestion);
+                context.SaveChanges();
+
+                // Xử lý câu trả lời
+                if (question.Answers != null)
+                {
+                    foreach (var answer in question.Answers)
+                    {
+                        if (!string.IsNullOrWhiteSpace(answer.AnswerText))
+                        {
+                            context.Answers.Add(new Answer
+                            {
+                                AnswerText = answer.AnswerText,
+                                IsCorrect = answer.IsCorrect,
+                                QuestionId = newQuestion.QuestionId
+                            });
+                        }
+                    }
+                    context.SaveChanges();
+                }
+
+                // Gán bài test
+                if (TestId > 0)
+                {
+                    var test = context.Tests.Find(TestId);
+                    if (test != null)
+                    {
+                        newQuestion.Tests.Add(test);
+                        context.SaveChanges();
+                    }
+                }
+
+                return RedirectToAction(nameof(Index));
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError("", "Có lỗi xảy ra: " + ex.Message);
                 ViewBag.TestId = new SelectList(context.Tests, "TestId", "TestName", TestId);
                 return View(question);
             }
-
-            // Tạo mới câu hỏi (không bao gồm Answers)
-            var newQuestion = new Question
-            {
-                QuestionText = question.QuestionText
-                // Thêm các thuộc tính khác nếu có
-            };
-
-            context.Questions.Add(newQuestion);
-            context.SaveChanges(); // Lưu để có QuestionId
-
-            // Xử lý các câu trả lời
-            if (question.Answers != null)
-            {
-                foreach (var answer in question.Answers)
-                {
-                    if (!string.IsNullOrWhiteSpace(answer.AnswerText))
-                    {
-                        // Tạo mới Answer không bao gồm AnswerId
-                        var newAnswer = new Answer
-                        {
-                            AnswerText = answer.AnswerText,
-                            IsCorrect = answer.IsCorrect,
-                            QuestionId = newQuestion.QuestionId
-                        };
-                        context.Answers.Add(newAnswer);
-                    }
-                }
-            }
-
-            // Gán bài test nếu có
-            if (TestId > 0)
-            {
-                var test = context.Tests.Find(TestId);
-                if (test != null)
-                {
-                    newQuestion.Tests.Add(test);
-                }
-            }
-
-            context.SaveChanges();
-            return RedirectToAction(nameof(Index));
         }
 
         // GET: QuestionController/Edit/5

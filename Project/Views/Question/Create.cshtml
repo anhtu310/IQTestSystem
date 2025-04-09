@@ -32,30 +32,34 @@
                 <label>Câu trả lời:</label>
                 <table class="table" id="answersTable">
                     <tbody>
-                        <!-- Đảm bảo KHÔNG có input hidden cho AnswerId -->
-                        @for (int i = 0; i < Model.Answers?.Count; i++)
+                        @if (Model.Answers != null && Model.Answers.Any())
                         {
-                            <tr>
-                                <!-- KHÔNG được có dòng này -->
-                                <!-- <input type="hidden" asp-for="Answers[i].AnswerId" /> -->
+                            for (int i = 0; i < Model.Answers.Count; i++)
+                            {
+                                <tr>
+                                    <td>
+                                        <input type="checkbox"
+                                               name="Answers[@i].IsCorrect"
+                                               value="true"
+                                        @(Model.Answers[i].IsCorrect ? "checked" : "") />
 
-                                <td>
-                                    <input type="checkbox" name="Answers[@i].IsCorrect" value="true" />
-                                    <input type="hidden" name="Answers[@i].IsCorrect" value="false" />
-                                </td>
-                                <td>
-                                    <input type="text" name="Answers[@i].AnswerText" class="form-control" required />
-                                </td>
-                                <td>
-                                    <button type="button" class="btn btn-danger remove-answer">Xóa</button>
-                                </td>
-                            </tr>
+                                    </td>
+                                    <td>
+                                        <input type="text" name="Answers[@i].AnswerText"
+                                               class="form-control"
+                                               value="@Model.Answers[i].AnswerText" required />
+                                    </td>
+                                    <td>
+                                        <button type="button" class="btn btn-danger remove-answer">Xóa</button>
+                                    </td>
+                                </tr>
+                            }
                         }
-                        @if (Model.Answers == null || Model.Answers.Count == 0)
+                        else
                         {
                             <tr>
                                 <td>
-                                    <input type="checkbox" name="Answers[0].IsCorrect" value="true" />
+                                    <input type="checkbox" name="Answers[0].IsCorrect" class="is-correct-checkbox" />
                                     <input type="hidden" name="Answers[0].IsCorrect" value="false" />
                                 </td>
                                 <td>
@@ -85,38 +89,74 @@
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
     <script>
-        let answerIndex = @(Model.Answers?.Count ?? 1);
+        // Khởi tạo answerIndex
+        let answerIndex = @(Model.Answers?.Count > 0 ? Model.Answers.Count : 1);
 
         document.getElementById('addAnswerButton').addEventListener('click', function () {
             const table = document.getElementById('answersTable').getElementsByTagName('tbody')[0];
             const newRow = table.insertRow();
 
-                    newRow.innerHTML = `
-            <td>
-                <input type="checkbox" name="Answers[${answerIndex}].IsCorrect" value="true" />
-                <input type="hidden" name="Answers[${answerIndex}].IsCorrect" value="false" />
-            </td>
-            <td>
-                <input type="text" name="Answers[${answerIndex}].AnswerText" class="form-control" required />
-            </td>
-            <td>
-                <button type="button" class="btn btn-danger remove-answer">Xóa</button>
-            </td>
-        `;
+            newRow.innerHTML = `
+                <td>
+        <input type="checkbox" name="Answers[${answerIndex}].IsCorrect" value="true" class="is-correct-checkbox" />
+                </td>
+                <td>
+                    <input type="text" name="Answers[${answerIndex}].AnswerText" class="form-control" required />
+                </td>
+                <td>
+                    <button type="button" class="btn btn-danger remove-answer">Xóa</button>
+                </td>
+            `;
+
+            newRow.querySelector('.is-correct-checkbox').addEventListener('change', function() {
+                this.nextElementSibling.value = this.checked ? 'true' : 'false';
+            });
+
             answerIndex++;
         });
 
+        document.querySelectorAll('.is-correct-checkbox').forEach(checkbox => {
+            checkbox.addEventListener('change', function() {
+                // Cập nhật giá trị của hidden field
+                this.nextElementSibling.value = this.checked ? 'true' : 'false';
+            });
+        });
+
+        // Xử lý xóa hàng
         document.addEventListener('click', function (e) {
             if (e.target.classList.contains('remove-answer')) {
-                e.target.closest('tr').remove();
-                // Đánh lại index các câu trả lời còn lại
-                const rows = document.querySelectorAll('#answersTable tbody tr');
-                rows.forEach((row, index) => {
-                    row.querySelector('input[type="checkbox"]').name = `Answers[${index}].IsCorrect`;
-                    row.querySelector('input[type="text"]').name = `Answers[${index}].AnswerText`;
-                });
-                answerIndex = rows.length;
+                const row = e.target.closest('tr');
+                if (document.querySelectorAll('#answersTable tbody tr').length > 1) {
+                    row.remove();
+                    // Cập nhật lại index
+                    updateAnswerIndexes();
+                } else {
+                    alert('Câu hỏi phải có ít nhất một câu trả lời!');
+                }
             }
+        });
+
+        function updateAnswerIndexes() {
+            const rows = document.querySelectorAll('#answersTable tbody tr');
+            rows.forEach((row, index) => {
+                // Cập nhật tên cho các input
+                const checkbox = row.querySelector('input[type="checkbox"]');
+                const hidden = row.querySelector('input[type="hidden"]');
+                const textInput = row.querySelector('input[type="text"]');
+
+                checkbox.name = `Answers[${index}].IsCorrect`;
+                hidden.name = `Answers[${index}].IsCorrect`;
+                textInput.name = `Answers[${index}].AnswerText`;
+            });
+            answerIndex = rows.length;
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.is-correct-checkbox').forEach(checkbox => {
+                checkbox.addEventListener('change', function() {
+                    this.nextElementSibling.value = this.checked ? 'true' : 'false';
+                });
+            });
         });
     </script>
 }
