@@ -1,0 +1,126 @@
+﻿@model Project.Models.Question
+@{
+    ViewData["Title"] = "Chỉnh sửa câu hỏi";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<h2 class="text-warning mb-4">Chỉnh sửa câu hỏi</h2>
+
+<div class="card shadow-sm">
+    <div class="card-body">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+            <input type="hidden" asp-for="QuestionId" />
+
+            <div class="mb-3">
+                <label asp-for="QuestionText" class="form-label">Nội dung câu hỏi</label>
+                <input asp-for="QuestionText" class="form-control" required />
+                <span asp-validation-for="QuestionText" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Chọn bài test:</label>
+                <select name="TestId" class="form-select" asp-items="ViewBag.TestId">
+                    <option value="">-- Chọn bài test --</option>
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Danh sách câu trả lời:</label>
+                <table class="table table-bordered align-middle" id="answersTable">
+                    <thead class="table-light">
+                        <tr>
+                            <th>Đúng</th>
+                            <th>Nội dung</th>
+                            <th>Hành động</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for (int i = 0; i < Model.Answers?.Count; i++)
+                        {
+                            <tr>
+                                <td class="text-center">
+                                    <input type="checkbox" asp-for="Answers[i].IsCorrect" class="form-check-input is-correct-checkbox" />
+                                    <input type="hidden" asp-for="Answers[i].AnswerId" />
+                                </td>
+                                <td>
+                                    <input asp-for="Answers[i].AnswerText" class="form-control" required />
+                                </td>
+                                <td class="text-center">
+                                    <button type="button" class="btn btn-outline-danger btn-sm remove-answer">Xoá</button>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+                <button type="button" class="btn btn-outline-secondary btn-sm" id="addAnswerButton">
+                    <i class="bi bi-plus-circle"></i> Thêm câu trả lời
+                </button>
+            </div>
+
+            <div class="text-end">
+                <button type="submit" class="btn btn-primary">
+                    <i class="bi bi-save"></i> Lưu thay đổi
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script>
+        let answerIndex = @(Model.Answers?.Count ?? 0);
+
+        document.getElementById('addAnswerButton').addEventListener('click', function () {
+            const table = document.querySelector('#answersTable tbody');
+            const newRow = document.createElement('tr');
+            newRow.innerHTML = `
+                <td class="text-center">
+                    <input type="checkbox" name="Answers[${answerIndex}].IsCorrect" value="true" class="form-check-input is-correct-checkbox" />
+                    <input type="hidden" name="Answers[${answerIndex}].IsCorrect" value="false" />
+                </td>
+                <td>
+                    <input type="text" name="Answers[${answerIndex}].AnswerText" class="form-control" required />
+                </td>
+                <td class="text-center">
+                    <button type="button" class="btn btn-outline-danger btn-sm remove-answer">Xoá</button>
+                </td>`;
+            table.appendChild(newRow);
+            answerIndex++;
+        });
+
+        document.addEventListener('click', function (e) {
+            if (e.target.classList.contains('remove-answer')) {
+                const rows = document.querySelectorAll('#answersTable tbody tr');
+                if (rows.length > 1) {
+                    e.target.closest('tr').remove();
+                    updateIndexes();
+                } else {
+                    alert("Phải có ít nhất 1 câu trả lời!");
+                }
+            }
+        });
+
+        function updateIndexes() {
+            const rows = document.querySelectorAll('#answersTable tbody tr');
+            rows.forEach((row, i) => {
+                const checkbox = row.querySelector('input[type="checkbox"]');
+                const hidden = row.querySelector('input[type="hidden"]');
+                const text = row.querySelector('input[type="text"]');
+
+                checkbox.name = `Answers[${i}].IsCorrect`;
+                hidden.name = `Answers[${i}].IsCorrect`;
+                text.name = `Answers[${i}].AnswerText`;
+            });
+            answerIndex = rows.length;
+        }
+
+        document.addEventListener('change', function (e) {
+            if (e.target.classList.contains('is-correct-checkbox')) {
+                e.target.nextElementSibling.value = e.target.checked ? 'true' : 'false';
+            }
+        });
+    </script>
+}

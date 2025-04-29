@@ -1,0 +1,57 @@
+﻿@model Project.Models.Test
+
+@{
+    ViewData["Title"] = "Tạo bài kiểm tra";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2 class="text-primary mb-4">Tạo bài kiểm tra</h2>
+
+<div class="card shadow-sm">
+    <div class="card-body">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+            <div class="mb-3">
+                <label asp-for="TestName" class="form-label">Tên bài kiểm tra</label>
+                <input asp-for="TestName" class="form-control" placeholder="Nhập tên bài kiểm tra" />
+                <span asp-validation-for="TestName" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Description" class="form-label">Mô tả</label>
+                <input asp-for="Description" class="form-control" placeholder="Nhập mô tả" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="CategoryId" class="form-label">Danh mục</label>
+                <select asp-for="CategoryId" class="form-select" asp-items="ViewBag.CategoryId">
+                    <option value="">-- Chọn danh mục --</option>
+                </select>
+                <span asp-validation-for="CategoryId" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="TimeLimit" class="form-label">Thời gian (phút)</label>
+                <input asp-for="TimeLimit" class="form-control" placeholder="VD: 60" />
+                <span asp-validation-for="TimeLimit" class="text-danger"></span>
+            </div>
+
+            <div class="text-end">
+                <button type="submit" class="btn btn-success">
+                    <i class="bi bi-check-circle"></i> Tạo mới
+                </button>
+                <a asp-action="Index" class="btn btn-outline-secondary ms-2">
+                    <i class="bi bi-arrow-left"></i> Quay lại
+                </a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

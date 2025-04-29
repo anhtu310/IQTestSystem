@@ -1,0 +1,99 @@
+﻿@{
+    ViewData["Title"] = "Register";
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Project</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+</head>
+<body>
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Register</h2>
+
+        @if (!string.IsNullOrEmpty(ViewBag.Error))
+        {
+            <div class="alert alert-danger">@ViewBag.Error</div>
+        }
+
+        @if (!string.IsNullOrEmpty(ViewBag.Success))
+        {
+            <div class="alert alert-success">@ViewBag.Success</div>
+        }
+
+    <form asp-action="RegisterAuthen" method="post" class="mx-auto" style="max-width: 400px;" onsubmit="return validateForm()">
+        <div class="mb-3">
+            <label class="form-label">Email</label>
+            <input type="email" name="Email" class="form-control" id="emailInput" required />
+            <div class="invalid-feedback">Please enter a valid email address.</div>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Mật khẩu</label>
+            <div class="input-group">
+                <input type="password" name="Password" class="form-control" id="passwordInput" required />
+                <button type="button" class="btn btn-outline-secondary" onclick="togglePassword('passwordInput', 'toggleIcon1')">
+                    <i class="fas fa-eye" id="toggleIcon1"></i>
+                </button>
+            </div>
+                <div class="form-text">Mật khẩu phải có ít nhất 6 ký tự, bao gồm chữ và số</div>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Xác nhận mật khẩu</label>
+            <div class="input-group">
+                <input type="password" name="ConfirmPassword" class="form-control" id="confirmPasswordInput" required />
+                <button type="button" class="btn btn-outline-secondary" onclick="togglePassword('confirmPasswordInput', 'toggleIcon2')">
+                    <i class="fas fa-eye" id="toggleIcon2"></i>
+                </button>
+            </div>
+            <div class="invalid-feedback">Mật khẩu không khớp</div>
+        </div>
+        <div class="text-end mb-3">
+            <a href="/Authentication/Login" class="text-decoration-none">Already have an account? Login</a>
+        </div>
+        <button type="submit" class="btn btn-primary w-100">Đăng ký</button>
+    </form>
+</div>
+
+<script>
+        function validateForm() 
+        {
+            const email = document.getElementById('emailInput').value;
+            const password = document.getElementById('passwordInput').value;
+            const confirmPassword = document.getElementById('confirmPasswordInput').value;
+            let isValid = true;
+
+            // Regex kiểm tra phải có ít nhất 1 chữ cái và 1 số
+            const regexLetterNumber = /^(?=.*[A-Za-z])(?=.*\d).+$/;
+
+            // Validate password length
+            if (password.length < 6) {
+                document.getElementById('passwordInput').classList.add('is-invalid');
+                isValid = false;
+            } else if (!regexLetterNumber.test(password)) {
+                document.getElementById('passwordInput').classList.add('is-invalid');
+                alert("Mật khẩu phải chứa cả chữ và số.");
+                isValid = false;
+            } else {
+                document.getElementById('passwordInput').classList.remove('is-invalid');
+            }
+
+            if (password !== confirmPassword) {
+                document.getElementById('confirmPasswordInput').classList.add('is-invalid');
+                isValid = false;
+            } else {
+                document.getElementById('confirmPasswordInput').classList.remove('is-invalid');
+            }
+
+            return isValid;
+        }
+</script>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+</body>
+</html>

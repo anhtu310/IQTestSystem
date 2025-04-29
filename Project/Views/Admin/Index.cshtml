@@ -1,0 +1,54 @@
+﻿@{
+    ViewData["Title"] = "Bảng điều khiển";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container mt-4">
+    <h2 class="mb-4">Bảng điều khiển</h2>
+
+    <div class="row">
+        <!-- Card: Số lượng bài test -->
+        <div class="col-md-3">
+            <div class="card text-white bg-primary mb-3">
+                <div class="card-header">Bài Test</div>
+                <div class="card-body">
+                    <h5 class="card-title">@ViewBag.TestCount</h5>
+                    <p class="card-text">Tổng số bài test trong hệ thống</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card: Số lượng người dùng -->
+        <div class="col-md-3">
+            <div class="card text-white bg-success mb-3">
+                <div class="card-header">Người Dùng</div>
+                <div class="card-body">
+                    <h5 class="card-title">@ViewBag.UserCount</h5>
+                    <p class="card-text">Số người dùng đã đăng ký</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card: Số lượng câu hỏi -->
+        <div class="col-md-3">
+            <div class="card text-white bg-warning mb-3">
+                <div class="card-header">Câu Hỏi</div>
+                <div class="card-body">
+                    <h5 class="card-title">@ViewBag.QuestionCount</h5>
+                    <p class="card-text">Tổng số câu hỏi hiện có</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card: Số lượng danh mục -->
+        <div class="col-md-3">
+            <div class="card text-white bg-danger mb-3">
+                <div class="card-header">Danh Mục</div>
+                <div class="card-body">
+                    <h5 class="card-title">@ViewBag.CategoryCount</h5>
+                    <p class="card-text">Tổng số danh mục</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

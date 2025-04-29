@@ -1,0 +1,37 @@
+﻿@model Project.Models.ViewModels.QuizResultVM
+
+<div class="container mt-4">
+    <h2 class="mb-4">Kết quả bài kiểm tra: @Model.TestName</h2>
+
+    <div class="alert alert-info">
+        Số câu đúng: @Model.CorrectAnswers / @Model.TotalQuestions <br />
+        Điểm số: @Model.Score / 100
+    </div>
+
+    <table class="table table-bordered">
+        <thead class="table-light">
+            <tr>
+                <th>#</th>
+                <th>Câu hỏi</th>
+                <th>Đáp án của bạn</th>
+                <th>Đáp án đúng</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (int i = 0; i < Model.QuestionResults.Count; i++)
+            {
+                var qr = Model.QuestionResults[i];
+                <tr class="@(qr.UserAnswer == qr.CorrectAnswer ? "table-success" : "table-danger")">
+                    <td>@(i + 1)</td>
+                    <td>@qr.QuestionText</td>
+                    <td>@qr.UserAnswer</td>
+                    <td>@qr.CorrectAnswer</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <a href="@Url.Action("Index", "Home")" class="btn btn-primary">Quay về trang chủ</a>
+    <a href="@Url.Action("TestHistory", "Test")" class="btn btn-info">Xem Lịch sử làm bài</a>
+
+</div>

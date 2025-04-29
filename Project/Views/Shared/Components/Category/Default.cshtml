@@ -1,0 +1,12 @@
+﻿<a class="nav-link text-dark dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+    Categories
+</a>
+<div class="dropdown-menu">
+    <a class="dropdown-item" href="@Url.Action("Index", "Home")">Tất cả</a> <!-- Nút xem tất cả -->
+    @foreach (var category in Model)
+    {
+        <a class="dropdown-item" href="@Url.Action("Index", "Home", new { categoryId = category.CategoryId })">
+            @category.CategoryName
+        </a>
+    }
+</div>
